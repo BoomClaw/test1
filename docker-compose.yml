@@ -2,7 +2,11 @@ services:
   backend:
     build: ./backend
     environment:
-      - TARGETS_JSON=[{"name":"Google","type":"http","addr":"https://www.google.com"},{"name":"Cloudflare DNS","type":"tcp","addr":"1.1.1.1:53"}]
+      - DB_PATH=/data/probe.db
+      - TARGETS_JSON=[{"name":"Google","type":"http","addr":"https://www.google.com","intervalSec":15,"timeoutSec":6},{"name":"GitHub","type":"http","addr":"https://github.com","intervalSec":20,"timeoutSec":6},{"name":"Cloudflare DNS","type":"tcp","addr":"1.1.1.1:53","intervalSec":15,"timeoutSec":4}]
+    volumes:
+      - ./data:/data
+
   frontend:
     build: ./frontend
     ports:
