@@ -1,0 +1,11 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      - TARGETS_JSON=[{"name":"Google","type":"http","addr":"https://www.google.com"},{"name":"Cloudflare DNS","type":"tcp","addr":"1.1.1.1:53"}]
+  frontend:
+    build: ./frontend
+    ports:
+      - "8090:80"
+    depends_on:
+      - backend
